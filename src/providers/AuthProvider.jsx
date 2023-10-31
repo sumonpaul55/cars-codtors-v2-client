@@ -29,12 +29,13 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             const userEmail = currentUser?.email || user?.email;
+            console.log(userEmail)
             setUser(currentUser);
             setLoading(false);
             // if exist current user then issue a token
             if (currentUser) {
                 axios.post("http://localhost:5000/jwt", userEmail, { withCredentials: true })
-                    .then();
+                    .then()
             }
             else {
                 axios.post("http://localhost:5000/logout", userEmail, { withCredentials: true })
