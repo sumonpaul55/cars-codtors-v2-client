@@ -1,9 +1,12 @@
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../providers/AuthProvider";
+import { useEffect, useState } from "react";
+import { } from "../../providers/AuthProvider";
 import BookingRow from "./BookingRow";
+import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 const Bookings = () => {
-    const { user } = useContext(AuthContext);
+    const { user } = useAuth()
+    // const { user } = useContext(AuthContext);
     const [bookings, setBookings] = useState([]);
 
     const url = `http://localhost:5000/bookings?email=${user?.email}`;
@@ -11,6 +14,9 @@ const Bookings = () => {
         fetch(url, { credentials: "include" })
             .then(res => res.json())
             .then(data => setBookings(data))
+            .catch(err => {
+                Swal.fire(err.message)
+            })
     }, [url]);
 
     const handleDelete = id => {
@@ -41,7 +47,6 @@ const Bookings = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 if (data.modifiedCount > 0) {
                     // update state
                     const remaining = bookings.filter(booking => booking._id !== id);

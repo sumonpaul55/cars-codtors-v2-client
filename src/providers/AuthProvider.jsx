@@ -29,18 +29,18 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             const userEmail = currentUser?.email || user?.email;
-            console.log(userEmail)
+            // console.log(currentUser)
             setUser(currentUser);
             setLoading(false);
             // if exist current user then issue a token
             if (currentUser) {
-                axios.post("http://localhost:5000/jwt", userEmail, { withCredentials: true })
+                axios.post("http://localhost:5000/jwt", { email: userEmail }, { withCredentials: true })
                     .then()
             }
             else {
-                axios.post("http://localhost:5000/logout", userEmail, { withCredentials: true })
+                axios.post("http://localhost:5000/logout", { email: userEmail }, { withCredentials: true })
                     .then(res => {
-                        console.log(res.data)
+                        res.success && Swal.fire({ title: "Logged Out", icon: "success" })
                     })
                     .catch(err => {
                         Swal.fire({ title: err, icon: "error" })
@@ -51,7 +51,6 @@ const AuthProvider = ({ children }) => {
             return unsubscribe();
         }
     }, [user])
-
     const authInfo = {
         user,
         loading,
