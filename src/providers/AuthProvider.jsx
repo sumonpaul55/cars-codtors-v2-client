@@ -34,11 +34,11 @@ const AuthProvider = ({ children }) => {
             setLoading(false);
             // if exist current user then issue a token
             if (currentUser) {
-                axios.post("https://car-doctor-server-eight-psi.vercel.app/jwt", { email: userEmail }, { withCredentials: true })
+                axios.post("https://car-doctor-server-ked7okhsh-sumonpaul55s-projects.vercel.app/jwt", { email: userEmail }, { withCredentials: true })
                     .then()
             }
             else {
-                axios.post("https://car-doctor-server-eight-psi.vercel.app/logout", { email: userEmail }, { withCredentials: true })
+                axios.post("https://car-doctor-server-ked7okhsh-sumonpaul55s-projects.vercel.app/logout", { email: userEmail }, { withCredentials: true })
                     .then(res => {
                         res.success && Swal.fire({ title: "Logged Out", icon: "success" })
                     })

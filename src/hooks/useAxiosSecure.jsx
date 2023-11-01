@@ -4,7 +4,7 @@ import { AuthContext } from "../providers/AuthProvider";
 import { Navigate } from "react-router-dom";
 
 const useAxios = axios.create({
-    baseURL: "https://car-doctor-server-eight-psi.vercel.app",
+    baseURL: "https://car-doctor-server-ked7okhsh-sumonpaul55s-projects.vercel.app",
     withCredentials: true,
 })
 

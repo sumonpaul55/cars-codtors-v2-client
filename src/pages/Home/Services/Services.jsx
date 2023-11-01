@@ -9,7 +9,7 @@ const Services = () => {
     const services = useService();
 
     // useEffect(() => {
-    //     fetch('https://car-doctor-server-eight-psi.vercel.app/services')
+    //     fetch('https://car-doctor-server-ked7okhsh-sumonpaul55s-projects.vercel.app/services')
     //         .then(res => res.json())
     //         .then(data => setServices(data));
     // }, [])
