@@ -1,11 +1,12 @@
 // import { useEffect, useState } from "react";
-import useServices from "../../Bookings/useServices";
+// import useServices from "../../Bookings/useServices";
+import useService from "../../../hooks/useService";
 import ServiceCard from "./ServiceCard";
 
 
 const Services = () => {
-    const service = useServices()
     // const [services, setServices] = useState([]);
+    const services = useService();
 
     // useEffect(() => {
     //     fetch('http://localhost:5000/services')
@@ -22,7 +23,7 @@ const Services = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {
-                    service.map(service => <ServiceCard
+                    services.map(service => <ServiceCard
                         key={service._id}
                         service={service}
                     ></ServiceCard>)

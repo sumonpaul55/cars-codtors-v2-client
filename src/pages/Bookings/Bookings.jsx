@@ -1,23 +1,28 @@
 import { useEffect, useState } from "react";
 import { } from "../../providers/AuthProvider";
 import BookingRow from "./BookingRow";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Bookings = () => {
     const { user } = useAuth()
     // const { user } = useContext(AuthContext);
     const [bookings, setBookings] = useState([]);
-
-    const url = `http://localhost:5000/bookings?email=${user?.email}`;
+    const useAxios = useAxiosSecure();
+    const url = `/bookings?email=${user?.email}`;
     useEffect(() => {
-        fetch(url, { credentials: "include" })
-            .then(res => res.json())
-            .then(data => setBookings(data))
-            .catch(err => {
-                Swal.fire(err.message)
+        // fetch(url, { credentials: "include" })
+        //     .then(res => res.json())
+        //     .then(data => setBookings(data))
+        //     .catch(err => {
+        //         Swal.fire(err.message)
+        //     })
+        useAxios.get(url)
+            .then(res => {
+                setBookings(res.data)
             })
-    }, [url]);
+    }, [url, useAxios]);
 
     const handleDelete = id => {
         const proceed = confirm('Are You sure you want to delete');
