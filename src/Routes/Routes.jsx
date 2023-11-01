@@ -26,7 +26,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'book/:id',
-        element: <BookService></BookService>,
+        element: <PrivateRoute><BookService></BookService></PrivateRoute>,
         loader: ({ params }) => fetch(`https://car-doctor-server-eight-psi.vercel.app/services/${params.id}`)
       },
       {
